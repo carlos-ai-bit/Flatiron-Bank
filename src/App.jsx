@@ -1,21 +1,23 @@
-import React from "react";
-import { ViewTable } from "./Components/ViewTable";
-import { useState, useEffect } from "react";
-import "./App.css";
-import { form } from "./Components/Form";
+import {useState, useEffect} from 'react'
+import './App.css'
+import ViewTable from "./Components/ViewTable";
+import {Form} from "./Components/Form"
 function App() {
-  const [transactions, settransactions] = useState([]);
+  const [transactions, setTransactions] =useState([])
 
   useEffect(() => {
-    fetch("http://localhost:8001/transactions").then((res) => res.json());
-    then((data) => settransactions(data));
-  }, []);
-  console.log(transactions);
+    //fetch data
+    fetch('http://localhost:8001/transactions')
+    .then(response => response.json())
+    .then(data => setTransactions(data))
+  },[])
+
   return (
     <>
+  <Form/>
       <ViewTable transactions={transactions} />
     </>
   );
-}
+  }
 
 export default App;
